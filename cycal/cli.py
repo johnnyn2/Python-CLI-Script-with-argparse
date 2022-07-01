@@ -23,4 +23,7 @@ for cmd in subcommands:
 args=parser.parse_args()
 
 def main():
-    args.func(args)
+    try:
+        args.func(args)
+    except:
+        parser.print_help()
