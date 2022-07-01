@@ -1,22 +1,26 @@
 import argparse
-from .main import cylinder_volume
+from .main import volume, surface
 
 # accept args
-parser = argparse.ArgumentParser(description="Calculate volume of a Cylinder")
-parser.add_argument('-r', '--radius', type=int, metavar='', required=True, help='Radius of cylinder')
-parser.add_argument('-H', '--height', type=int, metavar='', required=True, help='Height of cylinder')
-# only one of the arguments in the group can be specified
-group = parser.add_mutually_exclusive_group()
-group.add_argument('-q', '--quiet', action='store_true', help='print quiet')
-group.add_argument('-v', '--verbose', action='store_true', help='print verbose')
+parser = argparse.ArgumentParser(description="Cylinder Calculator")
+subparsers = parser.add_subparsers(title='subcommands', description='available functions')
+
+subcommands = [
+    surface, volume
+]
+for cmd in subcommands:
+    # add subcommands
+    subparser = subparsers.add_parser(cmd.__name__)
+    subparser.add_argument('-r', '--radius', type=int, metavar='', required=True, help='Radius of cylinder')
+    subparser.add_argument('-H', '--height', type=int, metavar='', required=True, help='Height of cylinder')
+    subparser.set_defaults(func=cmd)
+    # only one of the arguments in the group can be specified
+    subgroup = subparser.add_mutually_exclusive_group()
+    subgroup.add_argument('-q', '--quiet', action='store_true', help='print quiet')
+    subgroup.add_argument('--verbose', action='store_true', help='print verbose')
+
 # parse args from CLI
 args=parser.parse_args()
 
 def main():
-    volume = cylinder_volume(args.radius, args.height)
-    if args.quiet:
-        print(volume)
-    elif args.verbose:
-        print("Volume of a Cylinder with radius %s and height %s is %s" % (args.radius, args.height, volume))
-    else:
-        print( "The volume is %s" % volume)
+    args.func(args)
