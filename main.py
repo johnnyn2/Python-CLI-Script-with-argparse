@@ -1,8 +1,6 @@
 import math
 import argparse
 
-from pkg_resources import require
-
 # accept args
 parser = argparse.ArgumentParser(description="Calculate volume of a Cylinder")
 parser.add_argument('-r', '--radius', type=int, metavar='', required=True, help='Radius of cylinder')
