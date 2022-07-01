@@ -1,5 +1,5 @@
-import math
 import argparse
+from .main import cylinder_volume
 
 # accept args
 parser = argparse.ArgumentParser(description="Calculate volume of a Cylinder")
@@ -12,11 +12,7 @@ group.add_argument('-v', '--verbose', action='store_true', help='print verbose')
 # parse args from CLI
 args=parser.parse_args()
 
-def cylinder_volume(radius, height):
-    vol = math.pi * math.sqrt(radius) * height
-    return vol
-
-if __name__ == '__main__':
+def main():
     volume = cylinder_volume(args.radius, args.height)
     if args.quiet:
         print(volume)
