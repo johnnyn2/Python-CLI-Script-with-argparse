@@ -1,8 +1,10 @@
 import argparse
-from .main import volume, surface
+from .main import volume, surface, version
 
 # accept args
 parser = argparse.ArgumentParser(description="Cylinder Calculator")
+parser.add_argument('-v', '--version', help="current version", action='store_true')
+parser.set_defaults(func=version)
 subparsers = parser.add_subparsers(title='subcommands', description='available functions')
 
 subcommands = [

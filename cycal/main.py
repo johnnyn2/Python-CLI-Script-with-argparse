@@ -23,3 +23,6 @@ def surface(args):
     height = args.height
     surface = 2 * math.pi * radius * height + 2 * math.pi * math.pow(radius, 2)
     output(func='Surface', val=surface, args=args)
+
+def version(args):
+    print('cylinder-calculator/v0.0.1')
