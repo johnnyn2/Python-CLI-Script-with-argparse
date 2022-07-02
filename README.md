@@ -13,6 +13,9 @@ pip install https://github.com/johnnyn2/Python-CLI-Script-with-argparse/blob/mas
 ## Usage
 
 ```bash
+# version
+cycal -v
+
 # calculate cylinder total surface area
 cycal surface --radius=5 --height=2 --verbose
 
